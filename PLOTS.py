@@ -21,13 +21,11 @@ if len(sys.argv) == 6 and sys.argv[4] != "BAR":
 	col2 = int(sys.argv[3]) - 1
 	col3 = int(sys.argv[4]) - 1
 
-	if sys.argv[(len(sys.argv)-1)] == "CSV":
-		delim = ","
-	else:
-		delim = " "
-
 	k = 0
-	ft1 = ft[0].split(delim)
+	if sys.argv[(len(sys.argv)-1)] == "CSV":
+		ft1 = ft[0].split(",")
+	else:
+		ft1 = ft[0].split()
 	if ft1[0][0:1] == "#":
 		k = k + 1
 
@@ -35,7 +33,10 @@ if len(sys.argv) == 6 and sys.argv[4] != "BAR":
 	list2 = []
 	list3 = []
 	while k < len(ft):
-		ft1 = ft[k].split(delim)
+		if sys.argv[(len(sys.argv)-1)] == "CSV":
+			ft1 = ft[k].split(",")
+		else:
+			ft1 = ft[k].split()
 		t1 = float(ft1[col1].strip("\n"))
 		t1 = round(t1,2)
 		t2 = float(ft1[col2].strip("\n"))
@@ -102,23 +103,28 @@ elif len(sys.argv) == 6 and sys.argv[4] == "BAR":
 	col1 = int(sys.argv[2]) - 1
 	col2 = int(sys.argv[3]) - 1
 
-	if sys.argv[(len(sys.argv)-1)] == "CSV":
-		delim = ","
-	else:
-		delim = " "
-
 	k = 0
-	ft1 = ft[0].split(delim)
+	if sys.argv[(len(sys.argv)-1)] == "CSV":
+		ft1 = ft[0].split(",")
+	else:
+		ft1 = ft[0].split()
 	if ft1[0][0:1] == "#":
 		k = k + 1
+
+	print(len(ft1))
 
 	list1 = []
 	list2 = []
 	list3 = []
 	while k < len(ft):
-		ft1 = ft[k].split(delim)
-		t1 = float(ft1[col1].strip("\n"))
-		t1 = round(t1,1)
+		if sys.argv[(len(sys.argv)-1)] == "CSV":
+			ft1 = ft[k].split(",")
+		else:
+			ft1 = ft[k].split()
+		t1 = ft1[col1].strip("\n")
+		if t1.isdigit() == True:
+			t1 = float(t1)
+			t1 = round(t1,1)
 		t2 = float(ft1[col2].strip("\n"))
 		t2 = round(t2,2)
 		list1.append(t1)
@@ -145,9 +151,10 @@ elif len(sys.argv) == 6 and sys.argv[4] == "BAR":
 
 	plt.ylabel('{}'.format(yl), fontsize=10, fontweight='bold')
 	plt.xlabel('{}'.format(xl), fontsize=10, fontweight='bold')
-	plt.bar(x, y, color=warm_yellow, label="{}".format(gl))
+	plt.bar(x, y, color=light_red, label="{}".format(gl))
 	plt.xticks(x, xtics)
-	plt.legend(loc='upper right')
+	#plt.legend(loc='upper right')
+	plt.legend(loc='best', fontsize=12)
 
 	fig.tight_layout() 
 	plt.show()
@@ -157,12 +164,11 @@ elif len(sys.argv) == 5:
 	col1 = int(sys.argv[2]) - 1
 	col2 = int(sys.argv[3]) - 1
 
-	if sys.argv[(len(sys.argv)-1)] == "CSV":
-		delim = ","
-	else:
-		delim = " "
-
 	k = 0
+	if sys.argv[(len(sys.argv)-1)] == "CSV":
+		ft1 = ft[k].split(",")
+	else:
+		ft1 = ft[k].split()
 	ft1 = ft[0].split(delim)
 	if ft1[0][0:1] == "#":
 		k = k + 1
@@ -170,7 +176,10 @@ elif len(sys.argv) == 5:
 	list1 = []
 	list2 = []
 	while k < len(ft):
-		ft1 = ft[k].split(delim)
+		if sys.argv[(len(sys.argv)-1)] == "CSV":
+			ft1 = ft[k].split(",")
+		else:
+			ft1 = ft[k].split()
 		t1 = float(ft1[col1].strip("\n"))
 		t1 = round(t1,2)
 		t2 = float(ft1[col2].strip("\n"))
@@ -204,12 +213,11 @@ elif len(sys.argv) == 5:
 elif len(sys.argv) == 4:
 	col1 = int(sys.argv[2]) - 1
 
-	if sys.argv[(len(sys.argv)-1)] == "CSV":
-		delim = ","
-	else:
-		delim = " "
-
 	k = 0
+	if sys.argv[(len(sys.argv)-1)] == "CSV":
+		ft1 = ft[k].split(",")
+	else:
+		ft1 = ft[k].split()
 	ft1 = ft[0].split(delim)
 	if ft1[0][0:1] == "#":
 		k = k + 1
@@ -217,7 +225,10 @@ elif len(sys.argv) == 4:
 	list1 = []
 	list2 = []
 	while k < len(ft):
-		ft1 = ft[k].split(delim)
+		if sys.argv[(len(sys.argv)-1)] == "CSV":
+			ft1 = ft[k].split(",")
+		else:
+			ft1 = ft[k].split()
 		t1 = float(ft1[col1].strip("\n"))
 		t1 = round(t1,2)
 		list2.append(k)
